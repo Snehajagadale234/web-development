@@ -1,17 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Web Development Assignments</title>
+
+  <style>
+    body{
+      font-family: Arial;
+      text-align:center;
+      background:#f2f2f2;
+    }
+
+    .box{
+      display:none;
+      background:white;
+      padding:20px;
+      margin:20px;
+      border-radius:10px;
+      box-shadow:0 0 10px gray;
+    }
+
+    button{
+      margin:5px;
+      padding:10px 15px;
+      border:none;
+      background:#007bff;
+      color:white;
+      border-radius:5px;
+    }
+  </style>
+
+  <script>
+    function show(id){
+      let boxes = document.getElementsByClassName("box");
+      for(let i=0;i<boxes.length;i++){
+        boxes[i].style.display="none";
+      }
+      document.getElementById(id).style.display="block";
+    }
+  </script>
+
+</head>
+<body>
+
+<h1>Name: Sneha Jagadale</h1>
+<h2>Roll No: 83</h2>
+<h2>batch: S4</h2>
+
 <h2>My Assignments</h2>
 
-<ul>
-  <li><a href="assignment1.html">Assignment 1</a></li>
-  <li><a href="assignment2.html">Assignment 2</a></li>
-  <li><a href="assignment3.html">Assignment 3</a></li>
-  <li><a href="assignment4.html">Assignment 4</a></li>
-  <li><a href="assignment5.html">Assignment 5</a></li>
-  <li><a href="assignment6.html">Assignment 6</a></li>
-  <li><a href="assignment7.html">Assignment 7</a></li>
-  <li><a href="assignment8.html">Assignment 8</a></li>
-  <li><a href="assignment9.html">Assignment 9</a></li>
-  <li><a href="assignment10.html">Assignment 10</a></li>
-  <li><a href="assignment11.html">Assignment 11</a></li>
-  <li><a href="assignment12.html">Assignment 12</a></li>
-  <li><a href="assignment13.html">Assignment 13</a></li>
-</ul>
+<!-- Buttons -->
+<button onclick="show('a1')">Assignment 1</button>
+<button onclick="show('a2')">Assignment 2</button>
+<button onclick="show('a3')">Assignment 3</button>
+<button onclick="show('a4')">Assignment 4</button>
+<button onclick="show('a5')">Assignment 5</button>
+<button onclick="show('a6')">Assignment 6</button>
+<button onclick="show('a7')">Assignment 7</button>
+<button onclick="show('a8')">Assignment 8</button>
+<button onclick="show('a9')">Assignment 9</button>
+<button onclick="show('a10')">Assignment 10</button>
+<button onclick="show('a11')">Assignment 11</button>
+<button onclick="show('a12')">Assignment 12</button>
+<button onclick="show('a13')">Assignment 13</button>
+
+<!-- Assignments Content -->
+
+<div id="a1" class="box">
+  <h2>Assignment 1</h2>
+  <p>Write your Assignment 1 content here.</p>
+</div>
+
+<div id="a2" class="box">
+  <h2>Assignment 2</h2>
+  <p>Write your Assignment 2 content here.</p>
+</div>
+
+<div id="a3" class="box">
+  <h2>Assignment 3</h2>
+  <p>Write your Assignment 3 content here.</p>
+</div>
+
+<div id="a4" class="box">
+  <h2>Assignment 4</h2>
+  <p>Write your Assignment 4 content here.</p>
+</div>
+
+<div id="a5" class="box">
+  <h2>Assignment 5</h2>
+  <p>Write your Assignment 5 content here.</p>
+</div>
+
+<div id="a6" class="box">
+  <h2>Assignment 6</h2>
+  <p>Write your Assignment 6 content here.</p>
+</div>
+
+<div id="a7" class="box">
+  <h2>Assignment 7</h2>
+  <p>Write your Assignment 7 content here.</p>
+</div>
+
+<div id="a8" class="box">
+  <h2>Assignment 8</h2>
+  <p>Write your Assignment 8 content here.</p>
+</div>
+
+<div id="a9" class="box">
+  <h2>Assignment 9</h2>
+  <p>Write your Assignment 9 content here.</p>
+</div>
+
+<div id="a10" class="box">
+  <h2>Assignment 10</h2>
+  <p>Write your Assignment 10 content here.</p>
+</div>
+
+<div id="a11" class="box">
+  <h2>Assignment 11</h2>
+  <p>Write your Assignment 11 content here.</p>
+</div>
+
+<div id="a12" class="box">
+  <h2>Assignment 12</h2>
+  <p>Write your Assignment 12 content here.</p>
+</div>
+
+<div id="a13" class="box">
+  <h2>Assignment 13</h2>
+  <p>Write your Assignment 13 content here.</p>
+</div>
+
+</body>
+</html>
