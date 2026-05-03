@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Assignments</title>
+
+  <style>
+    body{
+      font-family: Arial;
+      background:#eef2f3;
+      margin:0;
+      text-align:center;
+    }
+
+    /* Header */
+    .header{
+      background:#007bff;
+      color:white;
+      padding:20px;
+    }
+
+    .header h1{
+      margin:5px;
+    }
+
+    /* Container */
+    .container{
+      padding:20px;
+    }
+
+    /* Buttons grid */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
+      gap:15px;
+      max-width:800px;
+      margin:auto;
+    }
+
+    button{
+      padding:12px;
+      border:none;
+      background:#28a745;
+      color:white;
+      border-radius:8px;
+      cursor:pointer;
+      font-size:14px;
+    }
+
+    button:hover{
+      background:#218838;
+    }
+
+    .disabled{
+      background:gray;
+      cursor:not-allowed;
+    }
+  </style>
+
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <h1>Sneha Jagadale</h1>
+  <h3>Roll No: 83 | Web Technology</h3>
+</div>
+
+<!-- Content -->
+<div class="container">
+
+  <h2>My Assignments</h2>
+
+  <div class="grid">
+
+    <button onclick="window.location.href='Web_technology.html'">Assignment 1</button>
+
+    <button onclick="window.location.href='static_web_page.html'">Assignment 2</button>
+
+    <button onclick="window.location.href='text_formatting.html'">Assignment 3</button>
+
+    <button onclick="window.location.href='list_tags.html'">Assignment 4</button>
+
+    <button onclick="window.location.href='image_page.html'">Assignment 5</button>
+
+    <button onclick="window.location.href='frames.html'">Assignment 6</button>
+
+    <button onclick="window.location.href='menu.html'">A6 Part 2</button>
+
+    <button onclick="window.location.href='content.html'">A6 Part 3</button>
+
+    <button onclick="window.location.href='link.html'">Assignment 7</button>
+
+    <button onclick="window.location.href='tabletag.html'">A7 Part 2</button>
+
+    <button onclick="window.location.href='list_tags.html'">Assignment 8</button>
+
+    <button onclick="window.location.href='employee_form.html'">Assignment 9</button>
+
+    <button onclick="window.location.href='resume.html'">Assignment 10</button>
+
+    <button onclick="window.location.href='student.html'">Assignment 11</button>
+
+    <button class="disabled">Assignment 12</button>
+
+    <button class="disabled">Assignment 13</button>
+
+  </div>
+
+</div>
+
+</body>
+</html>
