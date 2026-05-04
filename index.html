@@ -3,104 +3,119 @@
 <head>
   <title>My Assignments</title>
 
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <style>
     body{
-      font-family: Arial;
-      background:#eef2f3;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #74ebd5, #acb6e5);
       margin:0;
       text-align:center;
+      transition:0.4s;
     }
 
-    /* Header */
-    .header{
-      background:#007bff;
+    .dark{
+      background:#121212;
       color:white;
-      padding:20px;
+    }
+
+    .header{
+      background: linear-gradient(to right, #007bff, #00c6ff);
+      color:white;
+      padding:25px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.2);
     }
 
     .header h1{
-      margin:5px;
+      font-size:32px;
+      animation: glow 2s infinite alternate;
     }
 
-    /* Container */
+    @keyframes glow{
+      from{ text-shadow:0 0 5px white; }
+      to{ text-shadow:0 0 20px yellow; }
+    }
+
+    .toggle{
+      position:absolute;
+      top:20px;
+      right:20px;
+      background:black;
+      color:white;
+      border:none;
+      padding:8px 12px;
+      border-radius:8px;
+      cursor:pointer;
+    }
+
     .container{
-      padding:20px;
+      padding:30px;
     }
 
-    /* Buttons grid */
     .grid{
       display:grid;
       grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
-      gap:15px;
-      max-width:800px;
+      gap:20px;
+      max-width:900px;
       margin:auto;
     }
 
     button{
-      padding:12px;
+      padding:15px;
       border:none;
-      background:#28a745;
+      background: linear-gradient(135deg, #28a745, #5cd65c);
       color:white;
-      border-radius:8px;
+      border-radius:12px;
       cursor:pointer;
-      font-size:14px;
+      font-size:15px;
+      transition:0.3s;
+      box-shadow:0 5px 10px rgba(0,0,0,0.2);
     }
 
     button:hover{
-      background:#218838;
+      transform: translateY(-5px) scale(1.05);
     }
 
-    .disabled{
-      background:gray;
-      cursor:not-allowed;
-    }
   </style>
+
+  <script>
+    function toggleMode(){
+      document.body.classList.toggle("dark");
+    }
+  </script>
 
 </head>
 <body>
 
-<!-- Header -->
+<button class="toggle" onclick="toggleMode()">🌙 Mode</button>
+
 <div class="header">
-  <h1>Sneha Jagadale</h1>
-  <h2>Roll No: 83 </h2>
-  <h2>batch: S4</h2>
+  <h1><i class="fa-solid fa-graduation-cap"></i> Web Development Lab</h1>
+  <h2>Sneha Jagadale</h2>
+  <p>Roll No: 83 | Batch: S4</p>
 </div>
 
-<!-- Content -->
 <div class="container">
-
-  <h2>My Assignments</h2>
+  <h2>My Experiments</h2>
 
   <div class="grid">
 
-    <button onclick="window.location.href='web_technology.html'">Assignment 1</button>
-
-    <button onclick="window.location.href='static_web_page.html'">Assignment 2</button>
-
-    <button onclick="window.location.href='text_formatting.html'">Assignment 3</button>
-
-    <button onclick="window.location.href='list_tags.html'">Assignment 4</button>
-
-    <button onclick="window.location.href='image_page.html'">Assignment 5</button>
-
-    <button onclick="window.location.href='frames.html'">Assignment 6</button>
-
-    <button onclick="window.location.href='link.html'">Assignment 7</button>
-
-    <button onclick="window.location.href='tabletag.html'">Assignment 8</button>
-
-    <button onclick="window.location.href='employee_form.html'">Assignment 9</button>
-
-    <button onclick="window.location.href='resume.html'">Assignment 10</button>
-
-    <button onclick="window.location.href='student.xml'">Assignment 11</button>
-
-    <button class="disabled">Assignment 12</button>
-
-    <button class="disabled">Assignment 13</button>
+    <button onclick="location.href='web_technology.html'"><i class="fa-solid fa-code"></i> Experiment 1</button>
+    <button onclick="location.href='static_web_page.html'"><i class="fa-solid fa-file"></i> Experiment 2</button>
+    <button onclick="location.href='text_formatting.html'"><i class="fa-solid fa-pen"></i> Experiment 3</button>
+    <button onclick="location.href='list_tags.html'"><i class="fa-solid fa-list"></i> Experiment 4</button>
+    <button onclick="location.href='image_page.html'"><i class="fa-solid fa-image"></i> Experiment 5</button>
+    <button onclick="location.href='frames.html'"><i class="fa-solid fa-border-all"></i> Experiment 6</button>
+    <button onclick="location.href='link.html'"><i class="fa-solid fa-link"></i> Experiment 7</button>
+    <button onclick="location.href='tabletag.html'"><i class="fa-solid fa-table"></i> Experiment 8</button>
+    <button onclick="location.href='employee_form.html'"><i class="fa-solid fa-user"></i> Experiment 9</button>
+    <button onclick="location.href='resume.html'"><i class="fa-solid fa-id-card"></i> Experiment 10</button>
+    <button onclick="location.href='student.xml'"><i class="fa-solid fa-database"></i> Experiment 11</button>
+    <button onclick="location.href='library.xml'"><i class="fa-solid fa-book"></i> Experiment 12</button>
+    <button onclick="location.href='results.xml'"><i class="fa-solid fa-chart-line"></i> Experiment 13</button>
 
   </div>
-
 </div>
 
 </body>
