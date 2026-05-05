@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="students.css"?>
+<students>
+    <student>
+        <id>131</id>
+        <name>Sneha Sambhaji Jagadale </name>
+        <age>20</age>
+        <department>Computer Science</department>
+        <email>snehajagadale921@gmail.com</email>
+    </student>
+    <student>
+        <id>102</id>
+        <name>Jane Smith</name>
+        <age>21</age>
+        <department>Information Technology</department>
+        <email>janesmith@example.com</email>
+    </student>
+    <student>
+    <id>103</id>
+    <name>Emily Johnson</name>
+    <age>22</age>
+    <department>Software Engineering</department>
+    <email>emilyjohnson@example.com</email>
+</student>  
+<student>
+    <id>104</id>
+    <name>Michael Brown</name>
+    <age>23</age>
+    <department>Data Science</department>
+    <email>michaelbrown@example.com</email>
+</student>
+</students>
