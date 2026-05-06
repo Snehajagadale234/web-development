@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MessHub</title>
+
+<style>
+body {
+    margin:0;
+    font-family: Arial;
+    background: linear-gradient(135deg, #007799, #00c6ff);
+}
+
+/* LOGIN */
+.login-container {
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.login-box {
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    width:300px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.login-box input {
+    width:90%;
+    padding:10px;
+    margin:10px 0;
+}
+
+/* MAIN */
+#mainUI {display:none; background:#eef5ff; min-height:100vh;}
+
+.top {
+    background:#007799;
+    color:white;
+    padding:10px;
+    text-align:center;
+}
+
+.top p {
+    margin:0;
+    font-size:14px;
+}
+
+.profile {
+    background:white;
+    margin:10px;
+    padding:10px;
+    border:2px solid #007799;
+}
+
+.cards {
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    padding:15px;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+    .cards{grid-template-columns:1fr;}
+}
+
+.card {
+    background:white;
+    padding:10px;
+    border:1px solid gray;
+    transition:0.3s;
+}
+
+.card:hover {
+    transform:scale(1.03);
+}
+
+.selected {
+    background:#c8f7c5;
+    border:2px solid green;
+}
+
+.menu {display:none; margin-top:8px; font-size:13px;}
+
+.star {cursor:pointer; color:gray;}
+.star.active {color:gold;}
+
+button {
+    padding:6px 10px;
+    background:#007799;
+    color:white;
+    border:none;
+    margin:2px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div class="login-container" id="loginPage">
+    <div class="login-box">
+        <h2>🍽️ MessHub</h2>
+        <input type="text" id="user" placeholder="Enter Name">
+        <input type="text" id="contact" placeholder="Contact (10 digit)">
+        <button onclick="login()">Login</button>
+    </div>
+</div>
+
+<!-- MAIN -->
+<div id="mainUI">
+
+<div class="top">
+    <h2>🍽️ MessHub</h2>
+    <p id="welcomeText"></p>
+</div>
+
+<!-- SEARCH -->
+<div style="padding:10px;">
+<input type="text" id="areaInput" placeholder="Type area..." onkeyup="filterMess()">
+</div>
+
+<!-- PROFILE -->
+<div class="profile">
+<h3>👤 Selected Mess</h3>
+<div id="profileBox">No mess selected</div>
+</div>
+
+<div class="cards" id="cardContainer"></div>
+
+</div>
+
+<script>
+
+/* AREAS */
+let areas=["Kasaba Bawada","Tarabai Park","Shivaji Chowk"];
+
+/* MESS NAMES */
+let messNames=[
+"Shree Ganesh Mess","Om Sai Mess","Annapurna Mess","Mahalaxmi Mess","Krishna Mess",
+"Balaji Mess","Durga Mess","Ganraj Mess","Sharda Mess","Sai Krupa Mess",
+"Royal Mess","Green Leaf Mess","Urban Food Mess","City Mess","Fresh Meal Mess",
+"Happy Mess","Food Point Mess","Elite Mess","Modern Mess","Prime Mess",
+"Central Mess","Shivraj Mess","Ruchi Mess","Amrut Mess","Food Hub Mess",
+"Classic Mess","Golden Mess","Delight Mess","Taste Mess","Spice Mess"
+];
+
+/* MENUS */
+let menus=[
+{mon:"Poha + Tea",tue:"Upma",wed:"Rice + Dal",thu:"Chapati + Sabzi",fri:"Veg Pulao",sat:"Special Thali"},
+{mon:"Idli + Sambar",tue:"Paratha",wed:"Jeera Rice",thu:"Roti + Veg",fri:"Khichdi",sat:"Paneer"},
+{mon:"Poha + Milk",tue:"Sabudana",wed:"Rice + Sambar",thu:"Chapati + Aloo",fri:"Biryani",sat:"Chole"}
+];
+
+let messList=[];
+
+/* GENERATE 30 MESS */
+for(let i=0;i<30;i++){
+    let area=areas[Math.floor(i/10)];
+    messList.push({
+        name:messNames[i],
+        location:area,
+        price:2200+(i*50),
+        contact:"98765"+(10000+i),
+        menu:menus[i%3],
+        rating:0
+    });
+}
+
+/* LOAD SAVED DATA */
+let saved = JSON.parse(localStorage.getItem("messData"));
+let selectedIndex = localStorage.getItem("selectedIndex");
+
+if(saved){messList=saved;}
+if(selectedIndex!==null){selectedIndex=parseInt(selectedIndex);}
+else{selectedIndex=-1;}
+
+let filteredList=messList;
+
+/* LOAD NAME */
+let savedName = localStorage.getItem("username");
+if(savedName){
+    document.getElementById("welcomeText").innerHTML = "Welcome, " + savedName;
+}
+
+/* LOGIN */
+function login(){
+    let name=document.getElementById("user").value;
+    let phone=document.getElementById("contact").value;
+    let pattern=/^[0-9]{10}$/;
+
+    if(name===""){alert("Enter name");return;}
+    if(!pattern.test(phone)){alert("Enter valid number");return;}
+
+    localStorage.setItem("username", name);
+
+    document.getElementById("loginPage").style.display="none";
+    document.getElementById("mainUI").style.display="block";
+
+    document.getElementById("welcomeText").innerHTML = "Welcome, " + name;
+
+    displayMess();
+    loadProfile();
+}
+
+/* FILTER */
+function filterMess(){
+    let val=document.getElementById("areaInput").value.toLowerCase();
+    filteredList = val==="" ? messList : messList.filter(m=>m.location.toLowerCase().includes(val));
+    displayMess();
+}
+
+/* DISPLAY */
+function displayMess(){
+    let c=document.getElementById("cardContainer");
+    c.innerHTML="";
+
+    filteredList.forEach(m=>{
+        let i=messList.indexOf(m);
+
+        c.innerHTML+=`
+        <div class="card ${selectedIndex===i?'selected':''}">
+            <b>${m.name}</b><br>
+            📍 ${m.location}<br>
+            💰 Rs.${m.price}<br>
+            📞 ${m.contact}<br>
+
+            ${[1,2,3,4,5].map(s=>`
+            <span class="star ${m.rating>=s?'active':''}" onclick="rate(${i},${s})">★</span>
+            `).join("")}
+
+            <br>
+            <button onclick="selectMess(${i})">Add</button>
+            <button onclick="removeMess(${i})">Remove</button>
+            <button onclick="toggleMenu(${i})">Menu</button>
+
+            <div id="menu-${i}" class="menu">
+                Monday: ${m.menu.mon}<br>
+                Tuesday: ${m.menu.tue}<br>
+                Wednesday: ${m.menu.wed}<br>
+                Thursday: ${m.menu.thu}<br>
+                Friday: ${m.menu.fri}<br>
+                Saturday: ${m.menu.sat}
+            </div>
+        </div>
+        `;
+    });
+}
+
+/* SAVE */
+function saveData(){
+    localStorage.setItem("messData",JSON.stringify(messList));
+    localStorage.setItem("selectedIndex",selectedIndex);
+}
+
+/* SELECT */
+function selectMess(i){
+    selectedIndex=i;
+    saveData();
+    loadProfile();
+    displayMess();
+}
+
+/* REMOVE */
+function removeMess(i){
+    if(selectedIndex===i){
+        selectedIndex=-1;
+        saveData();
+        document.getElementById("profileBox").innerHTML="No mess selected";
+    }
+    displayMess();
+}
+
+/* PROFILE */
+function loadProfile(){
+    if(selectedIndex>=0){
+        let m=messList[selectedIndex];
+        document.getElementById("profileBox").innerHTML=`
+        <div class="selected">
+            <b>${m.name}</b><br>
+            📍 ${m.location}<br>
+            💰 Rs.${m.price}
+        </div>`;
+    }
+}
+
+/* MENU */
+function toggleMenu(i){
+    let m=document.getElementById("menu-"+i);
+    m.style.display = (m.style.display==="none")?"block":"none";
+}
+
+/* RATING */
+function rate(i,val){
+    messList[i].rating=val;
+    saveData();
+    displayMess();
+}
+
+</script>
+
+</body>
+</html>
